@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Document</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+
+    window.onload = function () {
+      document.getElementById('button').onclick = function () {
+        let ticker = document.getElementById('ticker').value;
+
+        socket.emit('setTicker', ticker);
+      };
+
+    };
+
+    socket.on('getTicker', function (msg) {
+      console.log('get ticker : ' + msg);
+    });
+  </script>
+</head>
+<body>
+  <p>Hello world!</p>
+  <input type="text" id="ticker" />
+  <button type="button" id="button">set ticker</button>
+</body>
+</html>
